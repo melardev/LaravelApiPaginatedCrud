@@ -13,6 +13,17 @@ A crud Api built with Laravel. Other implementations I made:
 - [Python Django + Rest Framework](https://github.com/melardev/DjangoRestFrameworkPaginatedCrud)
 - [Python Flask](https://github.com/melardev/FlaskApiPaginatedCrud)
 
+The next come are:
+- NodeJs Express + Knex
+- Flask + Flask-Restful
+- Laravel + Fractal
+- Laravel + ApiResources
+- Go with Mux
+- AspNet Core
+- AspNet Web Api 2
+- Jersey
+
+
 # Steps used to create this project
 
 ```bash
@@ -30,3 +41,10 @@ php artisan db:seed
 php artisan db:seed --class=TodosTableSeeder
 composer dump-autoload
 ```
+
+
+
+# Follow me
+- [Youtube Channel](https://youtube.com/melardev) I publish videos mainly on programming
+- [Blog](http://melardev.com) Sometimes I publish the source code there before Github
+- [Twitter](https://twitter.com/@melardev) I share tips on programming
