@@ -20,6 +20,8 @@ class BaseController extends Controller
                 $response['full_messages'] = [$messages];
             else if (is_array($messages))
                 $response['full_messages'] = $messages;
+        } else {
+            $response['full_messages'] = [];
         }
 
         return response()->json($response, 200);

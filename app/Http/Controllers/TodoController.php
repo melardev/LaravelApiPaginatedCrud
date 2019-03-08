@@ -7,6 +7,7 @@ use App\Dtos\Response\Todo\TodoListDto;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Input;
 
 class TodoController extends BaseController
 {
@@ -129,10 +130,30 @@ class TodoController extends BaseController
         if ($todo == null)
             return $this->sendErrorResponse('Todo not found');
 
+        // if ?partial=true AND a null variable is provided then keep the old value
+        // $partialUpdate = $request->only('partial');
+        $partialUpdate = boolval(Input::get('partial'));
         $data = $request->only(['title', 'description', 'completed']);
-        $todo->title = $data['title'];
-        $todo->description = $data['description'];
-        $todo->completed = $data['completed'];
+
+        if ($partialUpdate) {
+            if (array_key_exists('title', $data) && !is_null($data['title']))
+                $todo->title = $data['title'];
+
+
+            if (array_key_exists('description', $data) && !is_null($data['description']))
+                $todo->description = $data['description'];
+
+
+            if (array_key_exists('completed', $data) && !is_null($data['completed']))
+                $todo->completed = boolval($data['completed']);
+
+        } else {
+            $todo->title = $data['title'];
+            $todo->description = $data['description'];
+            $todo->completed = $data['completed'];
+        }
+
+
         $todo->save();
         return $this->sendSuccessResponse(TodoDto::build($todo, true), "Todo updated successfully");
     }

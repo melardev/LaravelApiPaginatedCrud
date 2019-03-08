@@ -16,7 +16,7 @@ class PageMetaDto
     private $requestedPageSize;
 
     private $currentItemsCount;
-    private $pageCount; // number of pages
+    private $numberOfPages; // number of pages
 
     private $offset;
 
@@ -27,7 +27,7 @@ class PageMetaDto
     {
         $requested_page_size = $paginator->perPage();
         $currentPageNumber = $paginator->currentPage();
-        $has_next_page = $paginator->lastPage() > $paginator->currentPage();
+        // $has_next_page = $paginator->lastPage() > $paginator->currentPage();
         $has_prev_page = $paginator->previousPageUrl() != null;
 
         if ($currentPageNumber < $paginator->lastPage()) {
@@ -66,7 +66,7 @@ class PageMetaDto
             'requested_page_size' => $paginator->perPage(),
             'total_items_count' => $paginator->total(),
             'current_items_count' => $paginator->perPage(),
-            'page_count' => $paginator->lastPage(),
+            'number_of_pages' => $paginator->lastPage(),
             'current_page_number' => $paginator->currentPage(),
         ];
 
@@ -152,14 +152,14 @@ class PageMetaDto
         $this->currentItemsCount = $currentItemsCount;
     }
 
-    public function getPageCount()
+    public function getNumberOfPages()
     {
-        return $this->pageCount;
+        return $this->numberOfPages;
     }
 
-    public function setPageCount(int $pageCount)
+    public function setNumberOfPages(int $numberOfPages)
     {
-        $this->pageCount = $pageCount;
+        $this->numberOfPages = $numberOfPages;
     }
 
     public function getOffset()

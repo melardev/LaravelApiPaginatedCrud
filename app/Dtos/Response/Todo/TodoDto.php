@@ -10,7 +10,7 @@ class TodoDto
     {
         $dto = [
             'id' => $todo->id,
-            'name' => $todo->title,
+            'title' => $todo->title,
             'completed' => (boolean)$todo->completed,
         ];
         if ($includeDetails)
